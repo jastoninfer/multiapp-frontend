@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Multiapp logo option 1">
+  <rect x="12" y="12" width="72" height="72" rx="18" fill="#0f766e"/>
+  <path d="M27 64V34h9l12 15 12-15h9v30h-9V48L50 60h-4L36 48v16z" fill="#ffffff"/>
+  <circle cx="30" cy="30" r="4" fill="#a7f3d0"/>
+  <circle cx="66" cy="66" r="4" fill="#7dd3fc"/>
+</svg>

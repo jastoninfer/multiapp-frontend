@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Serif M logo option 3">
+  <circle cx="48" cy="48" r="44" fill="#000000"/>
+  <circle cx="48" cy="48" r="34" fill="none" stroke="#ffffff" stroke-width="3"/>
+  <path d="M22 67h15v-5h-4V34l13 31h4l13-31v28h-4v5h15v-5h-5V33h5v-5H61L48 56 35 28H22v5h5v29h-5z" fill="#ffffff"/>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Serif M logo option 5">
+  <rect width="96" height="96" rx="18" fill="#000000"/>
+  <path d="M18 70h15v-5h-5V32h-5v-6h16l9 22 9-22h16v6h-5v33h5v5H58v-5h4V38L50 68h-4L34 38v27h4v5H18z" fill="#ffffff"/>
+  <path d="M32 24c5-7 27-7 32 0M32 72c5 7 27 7 32 0" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+</svg>

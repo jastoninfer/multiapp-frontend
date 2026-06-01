@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="login-pf" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiapp Login Theme Preview</title>
+    <link rel="stylesheet" href="./multiapp/login/resources/css/login.css" />
+  </head>
+  <body id="keycloak-bg">
+    <div class="pf-v5-c-login">
+      <div class="pf-v5-c-login__container">
+        <header id="kc-header" class="pf-v5-c-login__header">
+          <div id="kc-header-wrapper" class="pf-v5-c-brand">MULTIAPP</div>
+        </header>
+        <main class="pf-v5-c-login__main">
+          <div class="pf-v5-c-login__main-header">
+            <h1 class="pf-v5-c-title pf-m-3xl" id="kc-page-title">Sign in to your account</h1>
+          </div>
+          <div class="pf-v5-c-login__main-body">
+            <div id="kc-form">
+              <div id="kc-form-wrapper">
+                <form id="kc-form-login" class="pf-v5-c-form">
+                  <div class="pf-v5-c-form__group">
+                    <div class="pf-v5-c-form__group-label">
+                      <label for="username" class="pf-v5-c-form__label">
+                        <span class="pf-v5-c-form__label-text">Email</span>
+                      </label>
+                    </div>
+                    <span class="pf-v5-c-form-control">
+                      <input id="username" type="text" autofocus />
+                    </span>
+                  </div>
+                  <div class="pf-v5-c-form__group">
+                    <div class="pf-v5-c-form__group-label">
+                      <label for="password" class="pf-v5-c-form__label">
+                        <span class="pf-v5-c-form__label-text">Password</span>
+                      </label>
+                    </div>
+                    <div class="pf-v5-c-input-group">
+                      <div class="pf-v5-c-input-group__item pf-m-fill">
+                        <span class="pf-v5-c-form-control">
+                          <input id="password" type="password" />
+                        </span>
+                      </div>
+                      <div class="pf-v5-c-input-group__item">
+                        <button type="button" class="pf-v5-c-button pf-m-control" aria-label="Show password">●</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pf-v5-c-form__group">
+                    <div class="pf-v5-c-check">
+                      <label for="rememberMe" class="pf-v5-c-check">
+                        <input class="pf-v5-c-check__input" type="checkbox" id="rememberMe" />
+                        <span class="pf-v5-c-check__label">Remember me</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="pf-v5-c-form__group">
+                    <div class="pf-v5-c-form__actions">
+                      <button id="kc-login" class="pf-v5-c-button pf-m-primary pf-m-block" type="submit">Sign In</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div id="kc-info" class="pf-v5-c-login__main-footer-band">
+              <div id="kc-info-wrapper">
+                <div id="kc-registration-container" class="pf-v5-c-login__main-footer-band">
+                  <div id="kc-registration" class="pf-v5-c-login__main-footer-band-item">
+                    <span>Need workspace access? <a href="#">Create account</a></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
