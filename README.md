@@ -67,6 +67,28 @@ The static output is written to:
 dist/
 ```
 
+## Demo Accounts
+
+The demo environment includes users across platform, tenant admin, agent, resource, and customer roles. All accounts use:
+
+```text
+Password: Demo123!
+```
+
+| Workspace / tenant | Role | Accounts |
+| --- | --- | --- |
+| `__platform_admin` | Admin | `platform.admin@demo.com` (default)<br>`platform.ops@demo.com` (default) |
+| Acme Facilities | Admin | `platform.admin@demo.com`<br>`platform.ops@demo.com`<br>`tenant.admin@acme.demo` (default)<br>`acme.admin2@demo.com` (default) |
+| Acme Facilities | Agent | `agent@acme.demo` (default)<br>`acme.agent2@demo.com` (default)<br>`multi.member@demo.com` |
+| Acme Facilities | Resource user | `resource@acme.demo` (default)<br>`acme.resource2@demo.com` (default)<br>`acme.resource3@demo.com` (default) |
+| Acme Facilities | Customer | `customer@acme.demo` (default)<br>`acme.customer2@demo.com` (default)<br>`acme.customer3@demo.com` (default) |
+| Beta Clinic | Admin | `platform.admin@demo.com`<br>`platform.ops@demo.com`<br>`tenant.admin@acme.demo`<br>`beta.admin@demo.com` (default) |
+| Beta Clinic | Agent | `beta.agent@demo.com` (default)<br>`beta.agent2@demo.com` (default) |
+| Beta Clinic | Resource user | `beta.resource@demo.com` (default)<br>`beta.resource2@demo.com` (default) |
+| Beta Clinic | Customer | `multi.member@demo.com` (default)<br>`beta.customer@demo.com` (default) |
+| Suspended Tenant | Admin | `platform.admin@demo.com`<br>`platform.ops@demo.com` |
+| No workspace membership | Customer account | `guest.customer@demo.com` |
+
 ## Main Routes
 
 ```text
