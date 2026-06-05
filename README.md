@@ -1,17 +1,23 @@
 # Multiapp Frontend
 
-React frontend for the Multiapp IT service management SaaS demo. The UI is built as a mature business application for tenant admins, agents, resource users, and customers to manage tickets, appointments, contacts, members, tenants, availability, and audit logs.
+[![Frontend CI/CD](https://github.com/jastoninfer/multiapp-frontend/actions/workflows/frontend-ci-cd.yml/badge.svg)](https://github.com/jastoninfer/multiapp-frontend/actions/workflows/frontend-ci-cd.yml)
 
-This repository is the frontend/UI side of the demo. It talks to a Spring Boot backend and uses Keycloak authorization-code login with PKCE.
+React frontend for **Multiapp**, a multi-tenant ticketing and appointment SaaS demo. The UI is built for tenant admins, agents, resource users, and customers.
 
-## Highlights
+- Live demo: [https://multiapp-frontend.pages.dev](https://multiapp-frontend.pages.dev)
+- Backend repository: [https://github.com/jastoninfer/multiapp-backend](https://github.com/jastoninfer/multiapp-backend)
 
-- Role-aware navigation and action visibility.
-- Multi-tenant workspace selection.
-- Ticket list/detail workflow with comments, attachments, scheduling, owner/requester links, and write-permission gating.
-- Appointment, resource availability, member, contact, tenant, profile, and audit-log pages.
-- Consistent dashboard-style UI system with neutral button hierarchy, compact filters, paginated tables, tags, side panels, and detail views.
-- Refresh-token session extension for a smoother demo experience.
+![Multiapp dashboard](./public/og/multiapp-dashboard.png)
+
+## What This Frontend Does
+
+- Uses Keycloak authorization-code login with PKCE.
+- Refreshes tokens so the demo session lasts longer.
+- Lets users switch between tenants.
+- Sends `X-Tenant-Id` on tenant-scoped API calls.
+- Shows navigation and actions based on the user's role.
+- Supports tickets, appointments, contacts, members, tenant settings, resources, availability, profile, and audit logs.
+- Uses reusable table, filter, detail, pagination, and form patterns.
 
 ## Stack
 
@@ -21,7 +27,62 @@ This repository is the frontend/UI side of the demo. It talks to a Spring Boot b
 - React Router
 - TanStack Query
 - Lucide React
-- Plain CSS design system in `src/styles.css`
+- Plain CSS in `src/styles.css`
+- GitHub Actions
+- Cloudflare Pages
+
+## Main Workflows
+
+| Workflow | Routes / files |
+| --- | --- |
+| Login and callback | `/auth/callback`, `src/auth`, `src/pages/AuthCallbackPage.tsx` |
+| Tenant switching and layout | `src/components/Layout.tsx`, `src/hooks/useCurrentTenant.ts` |
+| Ticket list and detail | `/tickets`, `/tickets/:id` |
+| New ticket | `/tickets/new` |
+| Appointments | `/appointments`, `/appointments/:id` |
+| Resource availability | `/resources`, `/resources/:resourceUserId/availability` |
+| Contacts | `/contacts`, `/contacts/claim`, `/contacts/:contactId` |
+| Members and tenant settings | `/members`, `/members/:userId`, `/tenant` |
+| Audit logs | `/audit-logs` |
+
+## CI/CD
+
+CI/CD means the app is built and deployed through the same repeatable steps after each change.
+
+For this frontend:
+
+- **CI** runs on pull requests and pushes to `main`.
+- It installs dependencies with `npm ci`.
+- It runs the TypeScript and Vite production build with `npm run build`.
+- **CD** runs only for `main`.
+- The deploy job uploads the built `dist/` folder to Cloudflare Pages.
+- A smoke test checks that the deployed frontend responds.
+
+The workflow file is:
+
+```text
+.github/workflows/frontend-ci-cd.yml
+```
+
+Required GitHub secrets:
+
+```text
+CLOUDFLARE_API_TOKEN
+CLOUDFLARE_ACCOUNT_ID
+```
+
+Required GitHub variables for deployment:
+
+```text
+CLOUDFLARE_PAGES_PROJECT
+FRONTEND_URL
+VITE_API_BASE_URL
+VITE_KEYCLOAK_URL
+VITE_KEYCLOAK_REALM
+VITE_KEYCLOAK_CLIENT_ID
+```
+
+Private or deployment-specific values are kept in GitHub settings, not in this README.
 
 ## Environment
 
@@ -67,48 +128,6 @@ The static output is written to:
 dist/
 ```
 
-## Demo Accounts
-
-The demo environment includes users across platform, tenant admin, agent, resource, and customer roles. All accounts use:
-
-```text
-Password: Demo123!
-```
-
-| Workspace / tenant | Role | Accounts |
-| --- | --- | --- |
-| `__platform_admin` | Admin | `platform.admin@demo.com` (default)<br>`platform.ops@demo.com` (default) |
-| Acme Facilities | Admin | `platform.admin@demo.com`<br>`platform.ops@demo.com`<br>`tenant.admin@acme.demo` (default)<br>`acme.admin2@demo.com` (default) |
-| Acme Facilities | Agent | `agent@acme.demo` (default)<br>`acme.agent2@demo.com` (default)<br>`multi.member@demo.com` |
-| Acme Facilities | Resource user | `resource@acme.demo` (default)<br>`acme.resource2@demo.com` (default)<br>`acme.resource3@demo.com` (default) |
-| Acme Facilities | Customer | `customer@acme.demo` (default)<br>`acme.customer2@demo.com` (default)<br>`acme.customer3@demo.com` (default) |
-| Beta Clinic | Admin | `platform.admin@demo.com`<br>`platform.ops@demo.com`<br>`tenant.admin@acme.demo`<br>`beta.admin@demo.com` (default) |
-| Beta Clinic | Agent | `beta.agent@demo.com` (default)<br>`beta.agent2@demo.com` (default) |
-| Beta Clinic | Resource user | `beta.resource@demo.com` (default)<br>`beta.resource2@demo.com` (default) |
-| Beta Clinic | Customer | `multi.member@demo.com` (default)<br>`beta.customer@demo.com` (default) |
-| Suspended Tenant | Admin | `platform.admin@demo.com`<br>`platform.ops@demo.com` |
-| No workspace membership | Customer account | `guest.customer@demo.com` |
-
-## Main Routes
-
-```text
-/                       Dashboard
-/auth/callback          Keycloak callback
-/tickets                Ticket queue
-/tickets/:id            Ticket detail
-/appointments           Appointment list
-/appointments/:id       Appointment detail
-/availability           My availability
-/resources              Resource list
-/members                Tenant members
-/members/:userId        Member detail
-/contacts               External contacts
-/contacts/:contactId    Contact detail
-/tenants                Tenant management
-/audit-log              Admin audit log
-/profile                Account profile
-```
-
 ## Build
 
 ```bash
@@ -121,27 +140,25 @@ Preview the production build locally:
 npm run preview
 ```
 
-## Deployment
+## Demo Accounts
 
-The frontend is a static Vite app and can be hosted on Cloudflare Pages, Vercel, Netlify, or any static host.
+All demo accounts use `Demo123!`.
 
-Recommended build settings:
-
-```text
-Build command: npm run build
-Output directory: dist
-```
-
-Set the `VITE_*` variables in the hosting provider dashboard before building. The backend `APP_CORS_ALLOWED_ORIGINS` and Keycloak client redirect/web origins must include the final frontend origin.
+| Role | Account |
+| --- | --- |
+| Tenant admin | `tenant.admin@acme.demo` |
+| Agent | `agent@acme.demo` |
+| Resource user | `resource@acme.demo` |
+| Customer | `customer@acme.demo` |
 
 ## Backend Pairing
 
 This frontend expects the backend API to provide:
 
-- OIDC-protected `/me` and tenant-selection endpoints
-- Tenant-scoped ticket, appointment, contact, member, resource, tenant, and audit APIs
-- `Authorization: Bearer <access_token>`
-- `X-Tenant-Id` for tenant-scoped business endpoints
-- `ETag` / `If-Match` on update flows where required
+- OIDC-protected `/me` endpoint with user and tenant data.
+- Tenant-scoped APIs for tickets, appointments, contacts, members, resources, tenants, and audit logs.
+- `Authorization: Bearer <access_token>`.
+- `X-Tenant-Id` for tenant-scoped business endpoints.
+- `ETag` / `If-Match` on update flows where required.
 
-See the backend repository for Docker Compose and Keycloak setup.
+See the backend repository for Docker Compose, Keycloak setup, Flyway migrations, and backend deployment.
