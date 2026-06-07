@@ -24,6 +24,7 @@ export class OidcTokenExchangeError extends Error {
 
 interface LoginOptions {
   prompt?: "login";
+  loginHint?: string;
 }
 
 function base64Url(bytes: ArrayBuffer | Uint8Array) {
@@ -77,6 +78,7 @@ export async function startKeycloakLogin(
     code_challenge_method: "S256"
   });
   if (options.prompt) params.set("prompt", options.prompt);
+  if (options.loginHint?.trim()) params.set("login_hint", options.loginHint.trim());
 
   window.location.assign(`${realmBase(config)}/protocol/openid-connect/auth?${params}`);
 }
