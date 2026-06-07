@@ -21,6 +21,7 @@ import { TenantPage } from "./pages/TenantPage";
 import { ResourcesPage } from "./pages/ResourcesPage";
 import { NotificationsPage } from "./pages/NotificationsPage";
 import { AuditLogsPage } from "./pages/AuditLogsPage";
+import { PublicDemoPage } from "./pages/PublicDemoPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "auth/callback", element: <AuthCallbackPage /> },
+      { path: "demo", element: <PublicDemoPage /> },
       { path: "signed-out", element: <SignedOutPage /> },
       { path: "session-expired", element: <SessionExpiredPage /> },
       {
