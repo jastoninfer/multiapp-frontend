@@ -1795,6 +1795,8 @@ th {
 .audit-table th,
 .audit-table td {
   border-bottom: 0;
+  overflow: hidden;
+  vertical-align: middle;
 }
 
 .audit-table thead tr,
@@ -1812,19 +1814,19 @@ th {
 
 .audit-table th:nth-child(2),
 .audit-table td:nth-child(2) {
-  width: 19%;
+  width: 22%;
 }
 
 .audit-table th:nth-child(3),
 .audit-table td:nth-child(3) {
-  width: 18%;
+  width: 13%;
 }
 
 .audit-table th:nth-child(4),
 .audit-table td:nth-child(4),
 .audit-table th:nth-child(5),
 .audit-table td:nth-child(5) {
-  width: 14%;
+  width: 15%;
 }
 
 .audit-table th:nth-child(6),
@@ -1881,16 +1883,23 @@ th {
 }
 
 .audit-entity-cell {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   min-width: 0;
 }
 
-.audit-entity-cell > span:last-child {
-  color: #64748b;
-  font-size: 12px;
-  font-weight: 750;
+.audit-entity-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.audit-id-cell > span {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .audit-copy-button {
@@ -4415,6 +4424,22 @@ th {
   gap: 12px;
 }
 
+.ticket-create-appointment-panel {
+  overflow: hidden;
+}
+
+.ticket-create-appointment-panel .ticket-detail-section-title {
+  align-items: flex-start;
+}
+
+.ticket-create-appointment-panel .ticket-detail-section-title > div {
+  flex: 1 1 auto;
+}
+
+.ticket-create-appointment-panel .ticket-section-action {
+  min-width: 92px;
+}
+
 .ticket-detail-inline-form {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
@@ -4454,6 +4479,291 @@ th {
   font-size: 12px;
 }
 
+.ticket-appointment-form {
+  grid-template-columns: 1fr;
+  gap: 10px;
+  min-width: 0;
+  border-top: 1px solid #edf2f7;
+  padding-top: 12px;
+}
+
+.ticket-appointment-form label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.ticket-appointment-form label > span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.ticket-appointment-requester {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 9px 10px;
+  background: #f8fafc;
+}
+
+.ticket-appointment-requester span,
+.ticket-resource-picker label > span {
+  color: #334155;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.ticket-appointment-requester strong {
+  min-width: 0;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.ticket-resource-picker {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ticket-resource-combobox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  border: 1px solid #d7dee8;
+  border-radius: 8px;
+  padding: 0 10px;
+  background: #ffffff;
+  color: #64748b;
+}
+
+.ticket-resource-combobox:focus-within,
+.ticket-resource-combobox.open {
+  border-color: #64748b;
+  box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.16);
+}
+
+.ticket-resource-combobox input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  box-shadow: none;
+  padding: 8px 0;
+}
+
+.ticket-appointment-form .ticket-resource-combobox input {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  min-height: 38px;
+  padding: 8px 0;
+}
+
+.ticket-resource-combobox input:focus,
+.ticket-appointment-form .ticket-resource-combobox input:focus {
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+.ticket-resource-options {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: 0;
+  max-height: 240px;
+  overflow: auto;
+  border: 1px solid #d7dee8;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+}
+
+.ticket-appointment-form .ticket-resource-option {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) 18px;
+  align-items: center;
+  justify-content: stretch;
+  justify-items: start;
+  gap: 10px;
+  justify-self: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 50px;
+  border: 0;
+  border-radius: 0;
+  padding: 9px 10px;
+  background: transparent;
+  color: #334155;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.ticket-appointment-form .ticket-resource-option + .ticket-resource-option {
+  border-top: 1px solid #edf2f7;
+}
+
+.ticket-appointment-form .ticket-resource-option:hover,
+.ticket-appointment-form .ticket-resource-option.selected {
+  background: #f3f5f7;
+  color: #293241;
+}
+
+.ticket-appointment-form .ticket-resource-option > svg {
+  color: #64748b;
+}
+
+.ticket-appointment-form .ticket-resource-option span {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  justify-items: start;
+}
+
+.ticket-appointment-form .ticket-resource-option strong,
+.ticket-appointment-form .ticket-resource-option small {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticket-appointment-form .ticket-resource-option strong {
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.ticket-resource-option small,
+.ticket-resource-option-status {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.ticket-resource-option-status {
+  padding: 11px 10px;
+}
+
+.ticket-resource-availability {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #f8fafc;
+  color: #475569;
+  line-height: 1.25;
+}
+
+.ticket-resource-availability > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.ticket-resource-availability strong,
+.ticket-resource-availability small {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticket-resource-availability strong {
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.ticket-resource-availability small {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.ticket-appointment-form input,
+.ticket-appointment-form textarea {
+  min-width: 0;
+  border-radius: 8px;
+  border-color: #d7dee8;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.ticket-appointment-form input:focus,
+.ticket-appointment-form textarea:focus {
+  border-color: #64748b;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.16);
+}
+
+.ticket-appointment-form input {
+  min-height: 38px;
+  padding: 8px 10px;
+}
+
+.ticket-appointment-form input[type="datetime-local"] {
+  line-height: 1.2;
+}
+
+.ticket-appointment-form input::placeholder,
+.ticket-appointment-form textarea::placeholder {
+  color: #94a3b8;
+  font-weight: 650;
+}
+
+.ticket-appointment-form textarea {
+  min-height: 94px;
+  resize: vertical;
+}
+
+.ticket-appointment-form .full {
+  grid-column: auto;
+}
+
+.ticket-appointment-help {
+  display: block;
+  margin-top: -2px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.ticket-appointment-form > button {
+  justify-self: end;
+  width: auto;
+  min-width: 154px;
+  min-height: 36px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.1;
+}
+
 .appointment-notes-text {
   margin-top: -4px;
 }
@@ -4474,8 +4784,7 @@ th {
 
 .ticket-workflow-block button,
 .ticket-comment-form button,
-.ticket-upload-row button,
-.ticket-appointment-form button {
+.ticket-upload-row button {
   width: 100%;
 }
 

@@ -471,7 +471,15 @@ export function TicketDetailPage() {
 
             <AppointmentList title="Upcoming appointments" items={detail.upcomingAppointments?.items ?? detail.appointments?.items} linkResources={canManage} />
             <AppointmentList title="Recent past appointments" items={detail.recentPastAppointments?.items} linkResources={canManage} />
-            {canCreateAppointment && <CreateAppointmentForm ticketId={ticketId} defaultAddressText={ticket.locationText ?? ""} />}
+            {canCreateAppointment && (
+              <CreateAppointmentForm
+                ticketId={ticketId}
+                defaultAddressText={ticket.locationText ?? ""}
+                requesterUserId={ticket.requesterUserId}
+                requesterContactId={ticket.requesterContactId}
+                requesterName={ticket.requesterName}
+              />
+            )}
           </aside>
         </div>
       )}

@@ -374,11 +374,12 @@ export function AuditLogsPage() {
                                 <span className="audit-action">{titleCase(item.action)}</span>
                               </td>
                               <td className="audit-entity-cell">
-                                <StatusBadge value={item.entityType} />
-                                <span>{compactId(item.entityId)}</span>
+                                <span className="audit-entity-content">
+                                  <StatusBadge value={item.entityType} />
+                                </span>
                               </td>
-                              <td className="member-table-muted">{item.actorUserId ? compactId(item.actorUserId) : "System"}</td>
-                              <td className="member-table-muted">{compactId(item.requestId)}</td>
+                              <td className="member-table-muted audit-id-cell"><span title={item.actorUserId ?? "System"}>{item.actorUserId ? compactId(item.actorUserId) : "System"}</span></td>
+                              <td className="member-table-muted audit-id-cell"><span title={item.requestId ?? ""}>{compactId(item.requestId)}</span></td>
                               <td className="member-table-muted"><AuditTime value={item.createdAt} /></td>
                               <td>
                                 <button
